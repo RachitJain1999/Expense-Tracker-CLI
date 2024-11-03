@@ -24,6 +24,23 @@ class ExpenseTracker:
                 print(f"{ind}. {expense.view()}")
                 ind += 1
 
+    def view_expenses_Category_wise(self, category_name):
+        categoryName = [i.name for i in self.categories]
+        if category_name not in categoryName:
+            print(f"{category_name}' does not exist.")
+        else:
+            selectedExpenses = [expense for expense in self.expenses if expense.category == category_name]
+            if not selectedExpenses:
+                print(f"No expenses under '{category_name}' ")
+            else:
+                if not selectedExpenses:
+                    print("No expenses recorded.")
+                else:
+                    ind = 1
+                    for expense in selectedExpenses:
+                        print(f"{ind}. {expense.view()}")
+                        ind += 1
+
     def add_category(self, category_name):
         if category_name in self.categories:
             print(f"{category_name} already exists.")

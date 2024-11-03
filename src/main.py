@@ -15,6 +15,10 @@ def addCategory(tracker):
     category_name = input("Enter category name: ")
     tracker.add_category(category_name)
 
+def expensesByCategory(tracker):
+    category_name = input("Enter the category to filter by: ")
+    tracker.view_expenses_Category_wise(category_name)
+
 def main():
     tracker = ExpenseTracker()
 
@@ -28,7 +32,8 @@ def main():
         print("2. Show All Expenses")
         print("3. Add Category")
         print("4. Show All Categories")
-        print("5. Exit")
+        print("5. Expenses by Category")
+        print("6. Exit")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -40,6 +45,8 @@ def main():
         elif choice == "4":
             tracker.view_categories()
         elif choice == "5":
+            expensesByCategory(tracker)
+        elif choice == "6":
             print("Exiting Expense Tracker. See You Again!")
             break
         else:
