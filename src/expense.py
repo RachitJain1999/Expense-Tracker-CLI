@@ -5,4 +5,4 @@ class Expense:
         self.category = category
         self.description = description
     def view(self):
-        print(f"{self.date} - {self.category}: ${self.amount} - {self.description}")
+        return f"{self.date} ,Catergory - {self.category}, Amount - Rs {self.amount} , Description :  {self.description}"

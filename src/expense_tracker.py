@@ -7,7 +7,8 @@ class ExpenseTracker:
         self.categories = []
 
     def add_expense(self, amount, date, category, description="Not Available"):
-        if category not in self.categories:
+        categoryName = [i.name for i in self.categories]
+        if category not in categoryName:
             print(f"{category} does not exist. Please add it first.")
         else:
             expense = Expense(amount, date, category, description)
@@ -18,8 +19,10 @@ class ExpenseTracker:
         if not self.expenses:
             print("No expenses recorded.")
         else:
+            ind = 1
             for expense in self.expenses:
-                print(expense)
+                print(f"{ind}. {expense.view()}")
+                ind += 1
 
     def add_category(self, category_name):
         if category_name in self.categories:

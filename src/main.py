@@ -7,8 +7,9 @@ def addExpense(tracker):
         category = input("Enter Category: ")
         description = input("Enter Description (optional) : ")
         tracker.add_expense(amount, date, category, description)
-    except ValueError:
-        print("Invalid input. Please enter a valid number for amount.")
+    except:
+        print('Something went wrong')
+        
 
 def addCategory(tracker):
     category_name = input("Enter category name: ")
