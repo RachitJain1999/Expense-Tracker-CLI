@@ -19,6 +19,9 @@ def expensesByCategory(tracker):
     category_name = input("Enter the category to filter by: ")
     tracker.view_expenses_Category_wise(category_name)
 
+def saveCSV(tracker):
+    tracker.save_to_csv()
+
 def main():
     tracker = ExpenseTracker()
 
@@ -33,6 +36,7 @@ def main():
         print("3. Add Category")
         print("4. Show All Categories")
         print("5. Expenses by Category")
+        print("6. Save to csv")
         print("6. Exit")
         print('*'*25)
         choice = input("Enter your choice: ")
@@ -48,6 +52,8 @@ def main():
         elif choice == "5":
             expensesByCategory(tracker)
         elif choice == "6":
+            saveCSV(tracker)
+        elif choice == "7":
             print("Exiting Expense Tracker. See You Again!")
             break
         else:

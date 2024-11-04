@@ -1,5 +1,7 @@
 from expense import Expense
 from category import Category
+import csv
+import os
 
 class ExpenseTracker:
     def __init__(self):
@@ -37,7 +39,7 @@ class ExpenseTracker:
             selectedExpenses = [expense for expense in self.expenses if expense.category == category_name]
             if not selectedExpenses:
                 print(f"No expenses under '{category_name}' ")
-                
+
             else:
                 if not selectedExpenses:
                     print("No expenses recorded.")
@@ -67,3 +69,23 @@ class ExpenseTracker:
                 print(f" {ind}. {category.view()}")
                 ind += 1
             print("*"*25)
+
+    # src/expense_tracker.py
+
+# src/expense_tracker.py
+
+    def save_to_csv(self, filename="C:/Users/jaink/Desktop/html and css/Fynd/MidProject/Expense-Tracker-CLI/data/expenses.csv"):
+        directory = os.path.dirname(filename)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        
+        try:
+            with open(filename, mode="w", newline="") as file:
+                writer = csv.writer(file)
+                # Write header
+                writer.writerow(["Amount", "Date", "Category", "Description"])
+                for expense in self.expenses:
+                    writer.writerow([expense.amount, expense.date, expense.category, expense.description])
+            print(f"Expenses saved to {filename}")
+        except Exception as e:
+            print(f"Error saving to CSV: {e}")
