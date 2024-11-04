@@ -2,7 +2,7 @@ from expense_tracker import ExpenseTracker
 
 def addExpense(tracker):
     try:
-        amount = int(input("Enter amount: "))
+        amount = int(input("Enter amount(in Rupees) : "))
         date = input("Enter Date (YYYY-MM-DD): ")
         category = input("Enter Category: ")
         description = input("Enter Description (optional) : ")

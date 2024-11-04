@@ -1,3 +1,4 @@
+import datetime
 from expense import Expense
 from category import Category
 import csv
@@ -8,16 +9,23 @@ class ExpenseTracker:
         self.expenses = []
         self.categories = [Category('Entertainment') , Category('Utility') , Category('Groceries')]
 
-    def add_expense(self, amount, date, category, description="Not Available"):
-        categoryName = [i.name for i in self.categories]
-        if category not in categoryName:
-            print(f"{category} does not exist. Please add it first.")
-            print("*"*25)
-        else:
-            expense = Expense(amount, date, category, description)
-            self.expenses.append(expense)
-            print(f"Added expense. \U0001F600")
-            print("*"*25)
+    def add_expense(self, amount, date, category, description):
+        try:
+            # Validating amount
+            if amount <= 0:
+                raise ValueError("Amount must be positive.")
+            
+            
+            # Validate category
+            if not category:
+                raise ValueError("Category cannot be empty.")
+
+
+            new_expense = Expense(amount, date, category, description)
+            self.expenses.append(new_expense)
+            print(f" Expense Added \U0001F44B")
+        except ValueError as e:
+            print(f"Error adding expense: {e}")
 
     def delete_expense(self,index):
         self.expenses.pop(index-1)
@@ -75,10 +83,6 @@ class ExpenseTracker:
                 print(f" {ind}. {category.view()}")
                 ind += 1
             print("*"*25)
-
-    # src/expense_tracker.py
-
-# src/expense_tracker.py
 
     def save_to_csv(self, filename="C:/Users/jaink/Desktop/html and css/Fynd/MidProject/Expense-Tracker-CLI/data/expenses.csv"):
         directory = os.path.dirname(filename)
