@@ -34,6 +34,7 @@ def main():
         print("4. Show All Categories")
         print("5. Expenses by Category")
         print("6. Exit")
+        print('*'*25)
         choice = input("Enter your choice: ")
 
         if choice == "1":
