@@ -6,7 +6,7 @@ import os
 class ExpenseTracker:
     def __init__(self):
         self.expenses = []
-        self.categories = []
+        self.categories = [Category('Entertainment') , Category('Utility') , Category('Groceries')]
 
     def add_expense(self, amount, date, category, description="Not Available"):
         categoryName = [i.name for i in self.categories]
@@ -18,6 +18,12 @@ class ExpenseTracker:
             self.expenses.append(expense)
             print(f"Added expense. \U0001F600")
             print("*"*25)
+
+    def delete_expense(self,index):
+        self.expenses.pop(index-1)
+        print(f'Expense Deleted ')
+        print("*"*25)
+
 
     def view_expenses(self):
         if not self.expenses:
@@ -89,3 +95,4 @@ class ExpenseTracker:
             print(f"Expenses saved to {filename}")
         except Exception as e:
             print(f"Error saving to CSV: {e}")
+

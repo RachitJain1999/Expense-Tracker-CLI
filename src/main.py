@@ -22,6 +22,10 @@ def expensesByCategory(tracker):
 def saveCSV(tracker):
     tracker.save_to_csv()
 
+def deleteExpense(tracker):
+    index = int(input('Enter Expense Number you want to delete.'))
+    tracker.delete_expense(index)
+
 def main():
     tracker = ExpenseTracker()
 
@@ -33,11 +37,12 @@ def main():
         print("Expense Tracker Menu:")
         print("1. Add Expense")
         print("2. Show All Expenses")
-        print("3. Add Category")
-        print("4. Show All Categories")
-        print("5. Expenses by Category")
-        print("6. Save to csv")
-        print("6. Exit")
+        print("3. Delete Expense ")
+        print("4. Add Category")
+        print("5. Show All Categories")
+        print("6. Expenses by Category")
+        print("7. Save to csv")
+        print("8. Exit")
         print('*'*25)
         choice = input("Enter your choice: ")
 
@@ -46,14 +51,16 @@ def main():
         elif choice == "2":
             tracker.view_expenses()
         elif choice == "3":
-            addCategory(tracker)
+            deleteExpense(tracker)
         elif choice == "4":
-            tracker.view_categories()
+            addCategory(tracker)
         elif choice == "5":
-            expensesByCategory(tracker)
+            tracker.view_categories()
         elif choice == "6":
-            saveCSV(tracker)
+            expensesByCategory(tracker)
         elif choice == "7":
+            saveCSV(tracker)
+        elif choice == "8":
             print("Exiting Expense Tracker. See You Again!")
             break
         else:
