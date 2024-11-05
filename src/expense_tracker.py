@@ -15,11 +15,9 @@ class ExpenseTracker:
             if amount <= 0:
                 raise ValueError("Amount must be positive.")
             
-            
             # Validate category
             if not category:
                 raise ValueError("Category cannot be empty.")
-
 
             new_expense = Expense(amount, date, category, description)
             self.expenses.append(new_expense)
@@ -31,6 +29,25 @@ class ExpenseTracker:
         self.expenses.pop(index-1)
         print(f'Expense Deleted ')
         print("*"*25)
+
+    def update_expense(self,index):
+        expense = self.expenses[index-1]
+        try:
+            Amount = int(input("Enter New amount(in Rupees) : "))
+            date = input("Enter New Date (YYYY-MM-DD): ")
+            category = input("Enter New Category: ")
+            description = input("Enter New Description (optional) : ")
+            if(Amount < 0):
+                raise ValueError('Amount cannot be Negative')
+            if(not category):
+                raise ValueError('Category cannot be Empty')
+            
+            self.expenses[index-1] = Expense(Amount , date , category , description)
+            print(f"Expense Updated \U0001F973")
+            print("*"*25)
+            print()
+        except ValueError as e:
+            print(f"Error {e}")
 
 
     def view_expenses(self):
