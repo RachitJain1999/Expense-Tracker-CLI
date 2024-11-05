@@ -32,7 +32,7 @@ def updateExpense(tracker):
     try:
 
         index = int(input("Enter the expense number to update: "))
-        print("Enter Values in those fields only which you want to Update. \U0001F680")
+        print("Enter Values only for fields where you want to update. \U0001F680")
         tracker.update_expense(index)
     except ValueError:
         print("Error: Please enter a valid number. \U0001F641")
@@ -43,9 +43,11 @@ def main():
     print("Welcome to the Expense Tracker Application! \U0001F600")  
     print("Hello! \U0001F44B")  
     print("Let's get started! \U0001F680")  
+    print()
 
     while True:
         print("Expense Tracker Menu:")
+        print()
         print("1. Add Expense")
         print("2. Show All Expenses")
         print("3. Delete Expense ")
@@ -55,6 +57,7 @@ def main():
         print("7. Expenses by Category")
         print("8. Save to csv")
         print("9. Exit")
+        print()
         print('*'*25)
         choice = input("Enter your choice: ")
 

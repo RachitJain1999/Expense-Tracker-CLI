@@ -41,6 +41,8 @@ class ExpenseTracker:
     def update_expense(self, index):
         try:
             expense = self.expenses[index - 1]
+            print(f"{expense.view()}")
+            print()
             amount = int(input("Enter New Amount (\u20B9): "))
             if(amount == 0):
                 amount = expense.amount
@@ -115,19 +117,19 @@ class ExpenseTracker:
                 ind += 1
             print("*"*25)
 
-    def save_to_csv(self, filename="C:/Users/jaink/Desktop/html and css/Fynd/MidProject/Expense-Tracker-CLI/data/expenses.csv"):
+    def save_to_csv(self, filename="../data/expenses.csv"):
+        # Ensure the directory exists
         directory = os.path.dirname(filename)
-        if not os.path.exists(directory):
+        if directory and not os.path.exists(directory):
             os.makedirs(directory)
         
         try:
-            with open(filename, mode="w", newline="") as file:
+            with open(filename, mode="a", newline="") as file:
                 writer = csv.writer(file)
                 # Write header
                 writer.writerow(["Amount", "Date", "Category", "Description"])
                 for expense in self.expenses:
                     writer.writerow([expense.amount, expense.date, expense.category, expense.description])
-            print(f"Expenses saved to {filename}")
+            print(f"Expenses saved to {filename} successfully! \U0001F4BE")
         except Exception as e:
             print(f"Error saving to CSV: {e}")
-
