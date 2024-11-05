@@ -13,42 +13,60 @@ class ExpenseTracker:
         try:
             # Validating amount
             if amount <= 0:
-                raise ValueError("Amount must be positive.")
+                raise ValueError("Amount must be positive.\U0001F641")
             
             # Validate category
             if not category:
-                raise ValueError("Category cannot be empty.")
-
+                raise ValueError("Category cannot be empty.\U0001F641")
+            categories = [i.name for i in self.categories]
+            if(category not in categories):
+                raise ValueError('Please add this Category First \U0001F44B')
+            
             new_expense = Expense(amount, date, category, description)
             self.expenses.append(new_expense)
             print(f" Expense Added \U0001F44B")
         except ValueError as e:
             print(f"Error adding expense: {e}")
 
-    def delete_expense(self,index):
-        self.expenses.pop(index-1)
-        print(f'Expense Deleted ')
-        print("*"*25)
-
-    def update_expense(self,index):
-        expense = self.expenses[index-1]
+    def delete_expense(self, index):
         try:
-            Amount = int(input("Enter New amount(in Rupees) : "))
-            date = input("Enter New Date (YYYY-MM-DD): ")
-            category = input("Enter New Category: ")
-            description = input("Enter New Description (optional) : ")
-            if(Amount < 0):
-                raise ValueError('Amount cannot be Negative')
-            if(not category):
-                raise ValueError('Category cannot be Empty')
-            
-            self.expenses[index-1] = Expense(Amount , date , category , description)
-            print(f"Expense Updated \U0001F973")
-            print("*"*25)
-            print()
-        except ValueError as e:
-            print(f"Error {e}")
+            self.expenses.pop(index - 1)
+            print(f"Expense Deleted Successfully! \U0001F44D")
+        except IndexError:
+            print(f"Error: No expense found at index {index}. \U0001F641")
+        except ValueError:
+            print("Error: Please enter a valid index number. \U0001F641")
 
+
+    def update_expense(self, index):
+        try:
+            expense = self.expenses[index - 1]
+            amount = int(input("Enter New Amount (\u20B9): "))
+            if(amount == 0):
+                amount = expense.amount
+            if(amount <= 0):
+                raise ValueError('Amount Must be Positive')
+            date = input("Enter New Date (YYYY-MM-DD): ")
+            if(not date):
+                date = expense.date
+            category = input("Enter New Category: ")
+            if(not category):
+                category = expense.category
+            if not category:
+                raise ValueError("Category cannot be empty.\U0001F641")
+            categories = [i.name for i in self.categories]
+            if(category not in categories):
+                raise ValueError('Please add this Category First \U0001F44B')
+            description = input("Enter New Description (optional): ")
+            if(not description):
+                description = expense.description
+    
+            self.expenses[index - 1] = Expense(amount, date, category, description)
+            print(f"Expense Updated Successfully! \U0001F973")
+        except IndexError:
+            print(f"Error: No expense found at index {index}. \U0001F641")
+        except ValueError as e:
+            print(f"Error: {e}")
 
     def view_expenses(self):
         if not self.expenses:
@@ -70,15 +88,11 @@ class ExpenseTracker:
             selectedExpenses = [expense for expense in self.expenses if expense.category == category_name]
             if not selectedExpenses:
                 print(f"No expenses under '{category_name}' ")
-
             else:
-                if not selectedExpenses:
-                    print("No expenses recorded.")
-                else:
-                    ind = 1
-                    for expense in selectedExpenses:
-                        print(f"{ind}. {expense.view()}")
-                        ind += 1
+                ind = 1
+                for expense in selectedExpenses:
+                    print(f"{ind}. {expense.view()}")
+                    ind += 1
 
     def add_category(self, category_name):
         categoryName = [i.name for i in self.categories]

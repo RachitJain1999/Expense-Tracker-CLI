@@ -2,15 +2,14 @@ from expense_tracker import ExpenseTracker
 
 def addExpense(tracker):
     try:
-        amount = int(input("Enter amount(in Rupees) : "))
+        amount = int(input("Enter amount (\u20B9): "))
         date = input("Enter Date (YYYY-MM-DD): ")
         category = input("Enter Category: ")
-        description = input("Enter Description (optional) : ")
+        description = input("Enter Description (optional): ")
         tracker.add_expense(amount, date, category, description)
-    except:
-        print('Something went wrong')
+    except ValueError as e:
+        print(f"Error: {e} \U0001F641")
         
-
 def addCategory(tracker):
     category_name = input("Enter category name: ")
     tracker.add_category(category_name)
@@ -23,12 +22,20 @@ def saveCSV(tracker):
     tracker.save_to_csv()
 
 def deleteExpense(tracker):
-    index = int(input('Enter Expense number you want to delete.'))
-    tracker.delete_expense(index)
+    try:
+        index = int(input("Enter the expense number to delete: "))
+        tracker.delete_expense(index)
+    except ValueError:
+        print("Error: Please enter a valid number. \U0001F641")
 
 def updateExpense(tracker):
-    index = int(input('Enter Expense number you want to update : '))
-    tracker.update_expense(index)
+    try:
+
+        index = int(input("Enter the expense number to update: "))
+        print("Enter Values in those fields only which you want to Update. \U0001F680")
+        tracker.update_expense(index)
+    except ValueError:
+        print("Error: Please enter a valid number. \U0001F641")
 
 def main():
     tracker = ExpenseTracker()
@@ -73,20 +80,6 @@ def main():
         else:
             print("Invalid choice :( ") 
             print("Please enter a valid choice ")
-
-def addExpense(tracker):
-    try:
-        amount = int(input("Enter amount: "))
-        date = input("Enter date (YYYY-MM-DD): ")
-        category = input("Enter category: ")
-        description = input("Enter description (optional): ")
-        tracker.add_expense(amount, date, category, description)
-    except ValueError:
-        print("Invalid input. Please enter a valid number for amount.")
-
-def addCategory(tracker):
-    category_name = input("Enter category name: ")
-    tracker.add_category(category_name)
 
 if __name__ == "__main__":
     main()
