@@ -1,0 +1,17 @@
+Expense Tracker CLI: Your Personal Finance Assistant :)
+
+Tired of spreadsheets and struggling to keep track of your spending? The Expense Tracker CLI is here to help! This handy command-line tool empowers you to manage your finances effectively, right from your terminal.
+
+What It Does:
+
+Track Your Expenses: Easily add, view, update, and delete your daily expenses. Each expense entry can include details like amount, date, category (e.g., groceries, rent, entertainment,Girlfrien Yup you read that correct), and an optional description.
+Organize Your Finances: Categorize your expenses to gain valuable insights into your spending habits. Filter expenses by category to see where your money is going.
+Never Lose Track: The Expense Tracker automatically saves your data to a secure CSV file. When you restart the application, your expenses are present in the csv file , ensuring continuity.
+No More Mistakes: Say goodbye to typos and errors! Built-in validation checks for positive amounts, valid categories, and correct date formats help you avoid data inconsistencies. The application also handles file operations gracefully in case of unexpected issues.
+
+
+Class Structure and Interactions :
+The ExpenseTracker class maintains a list of Expense objects and a list of Category objects.
+ExpenseTracker interacts with Expense instances to add, read,update,delete, and categorize expenses.
+Category instances are used to organize expenses and help users filter and view expenses by category.
+Its also has a method for saving expenses into a csv.
