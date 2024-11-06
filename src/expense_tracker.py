@@ -118,16 +118,15 @@ class ExpenseTracker:
             print("*"*25)
 
     def save_to_csv(self, filename="../data/expenses.csv"):
-        # Ensure the directory exists
         directory = os.path.dirname(filename)
         if directory and not os.path.exists(directory):
             os.makedirs(directory)
-        
         try:
+            file_exists = os.path.isfile(filename)
             with open(filename, mode="a", newline="") as file:
                 writer = csv.writer(file)
-                # Write header
-                writer.writerow(["Amount", "Date", "Category", "Description"])
+                if not file_exists:
+                    writer.writerow(["Amount", "Date", "Category", "Description"])
                 for expense in self.expenses:
                     writer.writerow([expense.amount, expense.date, expense.category, expense.description])
             print(f"Expenses saved to {filename} successfully! \U0001F4BE")
