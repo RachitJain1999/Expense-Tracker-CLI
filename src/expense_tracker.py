@@ -122,13 +122,14 @@ class ExpenseTracker:
         if directory and not os.path.exists(directory):
             os.makedirs(directory)
         try:
-            file_exists = os.path.isfile(filename)
-            with open(filename, mode="a", newline="") as file:
+            mode = "a" if os.path.isfile(filename) else "w"  
+            with open(filename, mode=mode, newline="") as file:
                 writer = csv.writer(file)
-                if not file_exists:
+                if mode == "w":
                     writer.writerow(["Amount", "Date", "Category", "Description"])
                 for expense in self.expenses:
                     writer.writerow([expense.amount, expense.date, expense.category, expense.description])
+                
             print(f"Expenses saved to {filename} successfully! \U0001F4BE")
         except Exception as e:
             print(f"Error saving to CSV: {e}")
